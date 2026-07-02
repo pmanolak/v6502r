@@ -163,6 +163,7 @@ static void app_shutdown(void) {
 
 sapp_desc sokol_main(int argc, char* argv[]) {
     sargs_setup(&(sargs_desc){ .argc = argc, .argv = argv });
+    const bool high_dpi = sargs_boolean("highdpi");
     return (sapp_desc){
         .init_cb = app_init,
         .frame_cb = app_frame,
@@ -173,7 +174,8 @@ sapp_desc sokol_main(int argc, char* argv[]) {
         .window_title = WINDOW_TITLE,
         .enable_clipboard = true,
         .sample_count = 4,
-        .high_dpi = sargs_boolean("highdpi"),
+        .high_dpi = high_dpi,
+        .depth_format = SAPP_PIXELFORMAT_NONE,
         .clipboard_size = 16*1024,
         .icon = {
             .sokol_default = true
